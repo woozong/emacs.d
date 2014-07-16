@@ -142,7 +142,7 @@
 (require 'rainbow-delimiters)
 
 ;; Clojure
-(load-library "clojure-init")
+;(load-library "clojure-init")
 ;; Common Lisp
-(load-library "lisp-init")
+;(load-library "lisp-init")
 
