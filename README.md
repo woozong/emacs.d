@@ -6,7 +6,7 @@ emacs configuration.. everybody needs one, right?
 
 In this section I'll try to list all the sources that I used to construct my very own emacs config.
 
-* (https://github.com/cjohansen/.emacs.d)
+* [cjohansen/.emacs.d](https://github.com/cjohansen/.emacs.d)
 
 Your help and examples were invaluable, many thanks to all of you!
 
