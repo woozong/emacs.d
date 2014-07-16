@@ -1,3 +1,0 @@
-[submodule "site-lisp/dash"]
-	path = site-lisp/dash
-	url = git@github.com:magnars/dash.el.git
