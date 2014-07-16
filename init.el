@@ -61,6 +61,15 @@
      cider-tracing
      smooth-scrolling
      markdown-mode
+     css-eldoc
+     smartparens
+     ido-vertical-mode
+     ido-at-point
+     git-commit-mode
+     gitconfig-mode
+     gitignore-mode
+     rainbow-delimiters
+     guide-key
 ;     move-text
 ;     gist
 ;     htmlize
@@ -68,24 +77,16 @@
 ;     flycheck
 ;     flx
 ;     flx-ido
-     css-eldoc
 ;     yasnippet
-     smartparens
-     ido-vertical-mode
-     ido-at-point
 ;     simple-httpd
-;     guide-key
 ;     nodejs-repl
 ;     restclient
 ;     highlight-escape-sequences
 ;     whitespace-cleanup-mode
 ;     elisp-slime-nav
-     git-commit-mode
-     gitconfig-mode
-     gitignore-mode
 ;     groovy-mode
 ;     prodigy
-;;     textile-mode
+;     textile-mode
      )))
 
 (condition-case nil
@@ -99,47 +100,41 @@
 ;(add-to-list 'load-path "~/.emacs.d/clojure/")
 ;(add-to-list 'load-path "~/.emacs.d/lisp/")
 
+;; Lets start with a smattering of sanity
+(require 'sane-defaults)
+
+;; guide-key
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +"))
+(guide-key-mode 1)
+(setq guide-key/recursive-key-sequence-flag t)
+(setq guide-key/popup-window-position 'bottom)
+
+;; rainbow delimiters
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; Setup extensions
+(eval-after-load 'ido '(require 'setup-ido))
+;(eval-after-load 'org '(require 'setup-org))
+;(eval-after-load 'dired '(require 'setup-dired))
+;(eval-after-load 'magit '(require 'setup-magit))
+;(eval-after-load 'grep '(require 'setup-rgrep))
+;(eval-after-load 'shell '(require 'setup-shell))
+;(require 'setup-hippie)
+;(require 'setup-yasnippet)
+;(require 'setup-perspective)
+;(require 'setup-ffip)
+;(require 'setup-html-mode)
+;(require 'setup-paredit)
 
 ;; set e-mail address
 (setq user-mail-address "geertv@surfspot.be")
-
-;; default major mode for new buffers
-(setq-default major-mode 'text-mode)
-
-;; ok, we want to be in utf-8
-(prefer-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
-
-;; set up package repository
-(require 'package)
-(add-to-list 'package-archives
-             '(;; "marmalade" . "http://marmalade-repo.org/packages/"
-               "MELPA"        . "http://melpa.milkbox.net/packages/"))
-(package-initialize)
-
-;; packages to install
-(setq package-list 
-      '(paredit
-        rainbow-delimiters
-))
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
-(dolist (package package-list)
-  (when (not (package-installed-p package))
-    (package-install package)))
-
-;; set up smooth-scrolling
-(require 'smooth-scrolling)
-(setq smooth-scroll-margin 3)
 
 ;; setup eldoc
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-
-;; rainbow delimiters
-(require 'rainbow-delimiters)
 
 ;; Clojure
 ;(load-library "clojure-init")

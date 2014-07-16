@@ -8,5 +8,5 @@ In this section I'll try to list all the sources that I used to construct my ver
 
 * [cjohansen/.emacs.d](https://github.com/cjohansen/.emacs.d)
 
-Your help and examples were invaluable, many thanks to all of you!
+Many thanks to all of you, your examples were invaluable!
 
