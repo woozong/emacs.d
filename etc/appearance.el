@@ -15,18 +15,19 @@
 
 ;; Highlight matching parentheses when the point is on them.
 (show-paren-mode 1)
+;; rainbow delimiters
+(with-package rainbow-delimiters
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-  (tooltip-mode -1)
-  (blink-cursor-mode -1))
+  (tooltip-mode -1))
 
 ;; Sweet window-splits
 (defadvice split-window-right (after balance activate) (balance-windows))
 (defadvice delete-window (after balance activate) (balance-windows))
 
-;; Unclutter the modeline
-(require 'diminish)
 ;(eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
 ;(eval-after-load "eldoc" '(diminish 'eldoc-mode))
 ;(eval-after-load "paredit" '(diminish 'paredit-mode))
@@ -36,14 +37,14 @@
 ;(eval-after-load "skewer-css" '(diminish 'skewer-css-mode))
 ;(eval-after-load "skewer-html" '(diminish 'skewer-html-mode))
 ;(eval-after-load "smartparens" '(diminish 'smartparens-mode))
-(eval-after-load "guide-key" '(diminish 'guide-key-mode))
+;(eval-after-load "guide-key" '(diminish 'guide-key-mode))
 
-(defmacro rename-modeline (package-name mode new-name)
-  `(eval-after-load ,package-name
-     '(defadvice ,mode (after rename-modeline activate)
-        (setq mode-name ,new-name))))
+;(defmacro rename-modeline (package-name mode new-name)
+;  `(eval-after-load ,package-name
+;     '(defadvice ,mode (after rename-modeline activate)
+;        (setq mode-name ,new-name))))
 
 ;(rename-modeline "js2-mode" js2-mode "JS2")
-(rename-modeline "clojure-mode" clojure-mode "Clj")
+;(rename-modeline "clojure-mode" clojure-mode "Clj")
 
 (provide 'appearance)
